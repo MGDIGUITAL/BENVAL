@@ -3,37 +3,37 @@ import ScrollReveal from './ScrollReveal'
 
 const products = [
   {
-    img: 'https://images.unsplash.com/photo-1600566752547-5c462cba1f45?w=600&q=80',
+    img: '/items/ventanas-pvc.PNG',
     name: 'Ventanas PVC',
     tag: 'Alta aislación',
     description: 'Máximo aislamiento térmico y acústico. Bajo mantenimiento, alta durabilidad y resistencia a la humedad.',
   },
   {
-    img: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&q=80',
+    img: '/items/ventanas de aluminio.PNG',
     name: 'Ventanas Aluminio',
     tag: 'Robustez y estilo',
     description: 'Perfiles de aluminio anodizado. Diseños modernos para proyectos residenciales, comerciales e industriales.',
   },
   {
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    img: '/items/PUERTAS.PNG',
     name: 'Puertas',
     tag: 'A medida',
     description: 'Puertas de acceso, correderas y abatibles en PVC y aluminio. Diseñadas según las dimensiones de tu espacio.',
   },
   {
-    img: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80',
+    img: '/items/celosias.PNG',
     name: 'Celosías',
     tag: 'Ventilación y luz',
     description: 'Control inteligente de ventilación y privacidad. Instalación rápida en cualquier vano.',
   },
   {
-    img: 'https://images.unsplash.com/photo-1615873968403-89e068629265?w=600&q=80',
+    img: '/items/vidrio templado.PNG',
     name: 'Vidrio Templado',
     tag: 'Máxima seguridad',
     description: 'Cuatro veces más resistente que el vidrio común. Ideal para mamparas, duchas, fachadas y barandas.',
   },
   {
-    img: 'https://images.unsplash.com/photo-1600566752734-2a0cd66ab622?w=600&q=80',
+    img: '/items/termopaneles.PNG',
     name: 'Termopaneles',
     tag: 'Ahorro energético',
     description: 'Doble vidriado hermético con cámara de aire. Reduce hasta un 40% la pérdida de calor en invierno.',

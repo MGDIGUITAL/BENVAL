@@ -28,15 +28,15 @@ export default function Navbar() {
         scrolled ? 'bg-dark/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
       }`}
     >
-      <div className="container-max flex items-center justify-between h-16 px-4 md:px-8 lg:px-16">
+      <div className="container-max flex items-center justify-between h-20 px-4 md:px-8 lg:px-16">
         {/* Logo */}
         <a href="#inicio" className="flex items-center">
           <Image
             src="/logo.jpeg"
             alt="Benval — Ventanas de PVC y Aluminios"
-            width={160}
-            height={64}
-            className="h-12 w-auto object-contain"
+            width={220}
+            height={88}
+            className="h-16 w-auto object-contain"
             priority
           />
         </a>
