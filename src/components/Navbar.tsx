@@ -34,9 +34,9 @@ export default function Navbar() {
           <Image
             src="/logo.jpeg"
             alt="Benval — Ventanas de PVC y Aluminios"
-            width={120}
-            height={48}
-            className="h-10 w-auto object-contain"
+            width={160}
+            height={64}
+            className="h-12 w-auto object-contain"
             priority
           />
         </a>

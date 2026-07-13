@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { ArrowRight, ShieldCheck, Star, Wrench, Phone } from 'lucide-react'
 
 const stats = [
@@ -29,18 +28,6 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 container-max w-full px-4 md:px-8 lg:px-16 pt-24 pb-16">
         <div className="max-w-2xl">
-          {/* Logo en hero */}
-          <div className="mb-8">
-            <Image
-              src="/logo.jpeg"
-              alt="Benval — Ventanas de PVC y Aluminios"
-              width={220}
-              height={88}
-              className="h-20 w-auto object-contain"
-              priority
-            />
-          </div>
-
           <p className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border border-primary/40 bg-primary/10 text-primary text-sm font-medium tracking-wide">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             Fabricación e Instalación Profesional

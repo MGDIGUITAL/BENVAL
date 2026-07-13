@@ -17,8 +17,8 @@ module.exports = {
         'text-muted': '#64748B',
       },
       fontFamily: {
-        sans: ['var(--font-inter)'],
-        heading: ['var(--font-poppins)'],
+        sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
       },
     },
   },
