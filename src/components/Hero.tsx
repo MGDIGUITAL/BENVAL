@@ -10,22 +10,37 @@ const stats = [
 export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Video background */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
-          alt="Casa moderna con ventanas de aluminio"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/70 to-dark/40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-dark/70" />
       </div>
 
-      {/* Content — left aligned */}
+      {/* Content */}
       <div className="relative z-10 container-max w-full px-4 md:px-8 lg:px-16 pt-24 pb-16">
         <div className="max-w-2xl">
+          {/* Logo en hero */}
+          <div className="mb-8">
+            <Image
+              src="/logo.jpeg"
+              alt="Benval — Ventanas de PVC y Aluminios"
+              width={220}
+              height={88}
+              className="h-20 w-auto object-contain"
+              priority
+            />
+          </div>
+
           <p className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full border border-primary/40 bg-primary/10 text-primary text-sm font-medium tracking-wide">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
             Fabricación e Instalación Profesional
@@ -59,7 +74,6 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Stats row */}
           <div className="flex flex-col sm:flex-row gap-5 sm:gap-8">
             {stats.map(({ icon: Icon, label }) => (
               <div key={label} className="flex items-center gap-2.5 text-gray-300">

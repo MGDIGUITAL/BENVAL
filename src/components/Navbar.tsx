@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { Menu, X, Phone } from 'lucide-react'
 
 const links = [
@@ -29,13 +30,15 @@ export default function Navbar() {
     >
       <div className="container-max flex items-center justify-between h-16 px-4 md:px-8 lg:px-16">
         {/* Logo */}
-        <a href="#inicio" className="flex items-center gap-2">
-          <span className="font-heading font-bold text-2xl text-white">
-            Ben<span className="text-primary">val</span>
-          </span>
-          <span className="hidden sm:block text-xs text-text-muted uppercase tracking-wider leading-tight">
-            Ventanas PVC<br />y Aluminios
-          </span>
+        <a href="#inicio" className="flex items-center">
+          <Image
+            src="/logo.jpeg"
+            alt="Benval — Ventanas de PVC y Aluminios"
+            width={120}
+            height={48}
+            className="h-10 w-auto object-contain"
+            priority
+          />
         </a>
 
         {/* Desktop nav */}
@@ -68,7 +71,7 @@ export default function Navbar() {
             Cotizar Ahora
           </a>
           <button
-            className="md:hidden p-2 text-white"
+            className="md:hidden p-2 text-white min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
           >
@@ -85,7 +88,7 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-base text-gray-200 hover:text-primary transition-colors py-1"
+              className="text-base text-gray-200 hover:text-primary transition-colors py-2"
             >
               {l.label}
             </a>
@@ -93,11 +96,11 @@ export default function Navbar() {
           <a
             href="#contacto"
             onClick={() => setOpen(false)}
-            className="mt-2 inline-flex justify-center items-center px-5 py-3 rounded-full bg-primary text-dark font-semibold text-sm"
+            className="mt-2 inline-flex justify-center items-center px-5 py-3 rounded-full bg-primary text-dark font-semibold text-sm min-h-[44px]"
           >
             Cotizar Ahora
           </a>
-          <a href="tel:+56977509138" className="flex items-center gap-2 text-sm text-gray-400">
+          <a href="tel:+56977509138" className="flex items-center gap-2 text-sm text-gray-400 py-1">
             <Phone size={15} />
             +56 9 7750 9138
           </a>
