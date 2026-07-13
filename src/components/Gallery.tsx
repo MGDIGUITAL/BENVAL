@@ -2,7 +2,7 @@ import { Carousel } from '@/components/ui/carousel'
 import ScrollReveal from './ScrollReveal'
 
 const slides = [
-  { title: 'Ventanas de Aluminio', button: 'Solicitar Cotización', src: '/carrusel/2.jpg' },
+  { title: 'Ventanas de PVC', button: 'Solicitar Cotización', src: '/carrusel/2.jpg' },
   { title: 'Instalación Residencial', button: 'Solicitar Cotización', src: '/carrusel/3.jpg' },
   { title: 'Puertas a Medida', button: 'Solicitar Cotización', src: '/carrusel/4.jpg' },
   { title: 'Ventanas PVC', button: 'Solicitar Cotización', src: '/carrusel/5.jpg' },

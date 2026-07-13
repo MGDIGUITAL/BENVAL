@@ -20,6 +20,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
   const xRef = useRef(0);
   const yRef = useRef(0);
   const frameRef = useRef<number>();
+  const isActive = current === index;
 
   useEffect(() => {
     const animate = () => {
@@ -32,85 +33,72 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     return () => { if (frameRef.current) cancelAnimationFrame(frameRef.current); };
   }, []);
 
-  const handleMouseMove = (event: React.MouseEvent) => {
+  const handleMouseMove = (e: React.MouseEvent) => {
     const el = slideRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
-    yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
+    xRef.current = e.clientX - (r.left + r.width / 2);
+    yRef.current = e.clientY - (r.top + r.height / 2);
   };
 
   const handleMouseLeave = () => { xRef.current = 0; yRef.current = 0; };
 
-  const { src, button, title } = slide;
-
   return (
-    <div className="[perspective:1200px] [transform-style:preserve-3d]">
+    <div className="[perspective:1200px] [transform-style:preserve-3d] flex-shrink-0 w-full">
       <li
         ref={slideRef}
-        className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] mx-[4vmin] z-10 cursor-pointer"
+        className="relative w-full h-full text-center text-white cursor-pointer list-none"
         onClick={() => handleSlideClick(index)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{
-          transform: current !== index ? "scale(0.98) rotateX(8deg)" : "scale(1) rotateX(0deg)",
+          transform: isActive ? "scale(1) rotateX(0deg)" : "scale(0.96) rotateX(6deg)",
           transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
           transformOrigin: "bottom",
         }}
       >
         <div
-          className="absolute top-0 left-0 w-full h-full bg-[#111827] rounded-2xl overflow-hidden transition-all duration-150 ease-out"
+          className="absolute inset-0 rounded-2xl overflow-hidden bg-surface"
           style={{
-            transform: current === index
-              ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
+            transform: isActive
+              ? "translate3d(calc(var(--x) / 35), calc(var(--y) / 35), 0)"
               : "none",
+            transition: isActive ? "none" : "transform 0.3s ease",
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            className="absolute inset-0 w-[120%] h-[120%] object-cover transition-opacity duration-600 ease-in-out"
-            style={{ opacity: current === index ? 1 : 0.5 }}
-            alt={title}
-            src={src}
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+            style={{ opacity: isActive ? 1 : 0.45 }}
+            alt={slide.title}
+            src={slide.src}
             loading="eager"
             decoding="sync"
           />
-          {current === index && (
-            <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent transition-all duration-1000" />
-          )}
+          <div className={`absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"}`} />
         </div>
 
-        <article
-          className={`relative p-[4vmin] transition-opacity duration-1000 ease-in-out ${
-            current === index ? "opacity-100 visible" : "opacity-0 invisible"
+        <div
+          className={`relative h-full flex flex-col items-center justify-end pb-10 px-6 transition-opacity duration-500 ${
+            isActive ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <h3 className="text-lg md:text-2xl lg:text-3xl font-heading font-bold text-white drop-shadow-lg">
-            {title}
+          <h3 className="font-heading font-bold text-xl md:text-2xl lg:text-3xl text-white drop-shadow-lg mb-4">
+            {slide.title}
           </h3>
-          <div className="flex justify-center mt-5">
-            <a
-              href="#contacto"
-              className="px-6 py-2.5 rounded-full bg-primary text-dark text-sm font-bold hover:bg-primary-dark transition-colors duration-200 shadow-lg"
-            >
-              {button}
-            </a>
-          </div>
-        </article>
+          <a
+            href="#contacto"
+            className="px-6 py-2.5 rounded-full bg-primary text-dark text-sm font-bold hover:bg-primary-dark transition-colors duration-200 shadow-lg"
+          >
+            {slide.button}
+          </a>
+        </div>
       </li>
     </div>
   );
 };
 
-const CarouselControl = ({
-  type,
-  title,
-  handleClick,
-}: {
-  type: string;
-  title: string;
-  handleClick: () => void;
-}) => (
+const CarouselControl = ({ type, title, handleClick }: { type: string; title: string; handleClick: () => void }) => (
   <button
     className={`w-11 h-11 flex items-center justify-center mx-2 bg-white/10 border border-white/20 rounded-full hover:bg-primary/20 hover:border-primary/60 hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 focus:outline-none focus:ring-2 focus:ring-primary ${
       type === "previous" ? "rotate-180" : ""
@@ -123,47 +111,53 @@ const CarouselControl = ({
   </button>
 );
 
-interface CarouselProps {
-  slides: SlideData[];
-}
-
-export function Carousel({ slides }: CarouselProps) {
+export function Carousel({ slides }: { slides: SlideData[] }) {
   const [current, setCurrent] = useState(0);
   const id = useId();
 
-  const handlePreviousClick = () =>
-    setCurrent((c) => (c - 1 < 0 ? slides.length - 1 : c - 1));
-
-  const handleNextClick = () =>
-    setCurrent((c) => (c + 1 === slides.length ? 0 : c + 1));
-
-  const handleSlideClick = (index: number) => {
-    if (current !== index) setCurrent(index);
-  };
+  const prev = () => setCurrent((c) => (c - 1 < 0 ? slides.length - 1 : c - 1));
+  const next = () => setCurrent((c) => (c + 1 === slides.length ? 0 : c + 1));
 
   return (
-    <div
-      className="relative w-[70vmin] h-[70vmin] mx-auto"
-      aria-labelledby={`carousel-heading-${id}`}
-    >
-      <ul
-        className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
-        style={{ transform: `translateX(-${current * (100 / slides.length)}%)` }}
-      >
-        {slides.map((slide, index) => (
-          <Slide
-            key={index}
-            slide={slide}
-            index={index}
-            current={current}
-            handleSlideClick={handleSlideClick}
-          />
-        ))}
-      </ul>
+    <div className="w-full max-w-2xl mx-auto" aria-labelledby={`carousel-heading-${id}`}>
+      {/* Slide viewport */}
+      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-2xl">
+        <ul
+          className="flex h-full transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${current * 100}%)`, width: `${slides.length * 100}%` }}
+        >
+          {slides.map((slide, index) => (
+            <Slide
+              key={index}
+              slide={slide}
+              index={index}
+              current={current}
+              handleSlideClick={(i) => { if (current !== i) setCurrent(i); }}
+            />
+          ))}
+        </ul>
+      </div>
 
-      <div className="absolute flex justify-center w-full top-[calc(100%+1.5rem)]">
-        <CarouselControl type="previous" title="Proyecto anterior" handleClick={handlePreviousClick} />
-        <CarouselControl type="next" title="Proyecto siguiente" handleClick={handleNextClick} />
+      {/* Controls + dots */}
+      <div className="flex items-center justify-center gap-4 mt-6">
+        <CarouselControl type="previous" title="Proyecto anterior" handleClick={prev} />
+
+        <div className="flex gap-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              aria-label={`Ir a slide ${i + 1}`}
+              className={`rounded-full transition-all duration-300 ${
+                i === current
+                  ? "w-6 h-2 bg-primary"
+                  : "w-2 h-2 bg-white/30 hover:bg-white/60"
+              }`}
+            />
+          ))}
+        </div>
+
+        <CarouselControl type="next" title="Proyecto siguiente" handleClick={next} />
       </div>
     </div>
   );
