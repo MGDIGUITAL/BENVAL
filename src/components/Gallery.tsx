@@ -52,10 +52,7 @@ export default function Gallery() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/10 to-transparent" />
-                    <span className="absolute bottom-4 left-4 text-white font-heading font-semibold text-sm px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm">
-                      {label}
-                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark/40 via-transparent to-transparent" />
                   </div>
                 </CarouselItem>
               ))}
