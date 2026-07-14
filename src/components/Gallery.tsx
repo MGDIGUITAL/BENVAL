@@ -8,15 +8,15 @@ import {
 import Image from 'next/image'
 
 const slides = [
-  { src: '/carrusel/2.jpg',    alt: 'Instalación de ventanas de PVC',        label: 'Ventanas PVC' },
-  { src: '/carrusel/3.jpg',    alt: 'Ventanas de aluminio instaladas',        label: 'Ventanas Aluminio' },
-  { src: '/carrusel/4.jpg',    alt: 'Puerta de aluminio a medida',            label: 'Puertas' },
-  { src: '/carrusel/5.jpg',    alt: 'Celosías instaladas',                   label: 'Celosías' },
-  { src: '/carrusel/6.jpg',    alt: 'Vidrio templado mampara',               label: 'Vidrio Templado' },
-  { src: '/carrusel/7.jpg',    alt: 'Termopanel doble vidriado',             label: 'Termopaneles' },
-  { src: '/carrusel/8.jpg',    alt: 'Proyecto residencial Benval',           label: 'Proyecto Residencial' },
-  { src: '/carrusel/10.jpg',   alt: 'Instalación comercial Benval',          label: 'Proyecto Comercial' },
-  { src: '/carrusel/extra.png',alt: 'Taller Benval fabricación',             label: 'Nuestro Taller' },
+  { src: '/carrusel/2.jpg',    alt: 'Residencia privada con ventanas de PVC',              label: 'Residencia Privada' },
+  { src: '/carrusel/3.jpg',    alt: 'Universidad Católica de Valparaíso',                  label: 'U. Católica de Valparaíso' },
+  { src: '/carrusel/4.jpg',    alt: 'Oficinas con termopaneles',                           label: 'Oficinas' },
+  { src: '/carrusel/5.jpg',    alt: 'Universidad Católica de Valparaíso vidrio templado',  label: 'U. Católica de Valparaíso' },
+  { src: '/carrusel/6.jpg',    alt: 'Residencia privada con celosías',                     label: 'Residencia Privada' },
+  { src: '/carrusel/7.jpg',    alt: 'Club Naval Valparaíso ventanas restauradas',          label: 'Club Naval Valparaíso' },
+  { src: '/carrusel/8.jpg',    alt: 'Proyecto residencial Benval',                         label: 'Proyecto Residencial' },
+  { src: '/carrusel/10.jpg',   alt: 'Proyecto comercial Benval',                           label: 'Proyecto Comercial' },
+  { src: '/carrusel/extra.png',alt: 'Taller Benval fabricación',                           label: 'Nuestro Taller' },
 ]
 
 export default function Gallery() {

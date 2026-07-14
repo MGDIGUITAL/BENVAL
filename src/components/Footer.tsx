@@ -18,6 +18,13 @@ const products = [
   'Termopaneles',
 ]
 
+const regiones = [
+  'IV Región de Coquimbo',
+  'V Región de Valparaíso',
+  'Región Metropolitana',
+  'VI Región del Libertador',
+]
+
 export default function Footer() {
   return (
     <footer className="bg-[#050810] text-white">
